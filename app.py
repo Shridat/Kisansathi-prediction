@@ -93,4 +93,4 @@ def upload():
 
 if __name__ == '__main__':
     
-    app.run(threaded=False)
+    app.run(debug=True)
