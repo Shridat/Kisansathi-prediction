@@ -2,7 +2,6 @@
 gunicorn==19.9.0
 Flask
 numpy
-codecs
 textract
 keras
 werkzeug
