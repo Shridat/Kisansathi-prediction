@@ -32,7 +32,6 @@ from keras.preprocessing import image
 from werkzeug.utils import secure_filename # use to store the file name
 # Flask utils
 from flask import Flask, redirect, url_for, request, render_template
-import cv2
 from PIL import Image, ImageOps
 import streamlit as st
 
