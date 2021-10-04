@@ -1,10 +1,12 @@
 
 gunicorn==19.9.0
 Flask
+Jinja2==2.10.1
 numpy
 textract
 keras
 werkzeug
 image
-redirect
 request
+itsdangerous==1.1.0
+MarkupSafe==1.1.1
