@@ -28,7 +28,6 @@ compressed-rtf==1.0.6
 contextvars==2.4
 cycler==0.10.0
 cymem==2.0.5
-dataclasses==0.8
 decorator==4.4.2
 defusedxml==0.7.1
 distlib==0.3.1
