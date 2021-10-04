@@ -56,7 +56,6 @@ sklearn==0.0
 smart-open==3.0.0
 snowballstemmer==2.1.0
 sortedcontainers==2.4.0
-tensorflow
 textract==1.6.4
 thinc==8.0.2
 threadpoolctl==2.1.0
