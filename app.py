@@ -49,9 +49,9 @@ model = load_model(MODEL_PATH)
 #print('Model loaded. Check http://127.0.0.1:5000/')
 
 
-def model_predict(img_path, model):
+def model_predict(img_data, model):
     size=(224,224)
-    img = ImageOps.fit(image_data, size)
+    img = ImageOps.fit(img_data, size)
 
     # Preprocessing the image
     x = image.img_to_array(img)
