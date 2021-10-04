@@ -32,7 +32,9 @@ from keras.preprocessing import image
 from werkzeug.utils import secure_filename # use to store the file name
 # Flask utils
 from flask import Flask, redirect, url_for, request, render_template
-
+import cv2
+from PIL import Image, ImageOps
+import streamlit as st
 
 # Define a flask app
 app = Flask(__name__)
@@ -49,7 +51,8 @@ model = load_model(MODEL_PATH)
 
 
 def model_predict(img_path, model):
-    img = image.load_img(img_path, target_size=(224, 224))
+    size=(224,224)
+    img = ImageOps.fit(image_data, size)
 
     # Preprocessing the image
     x = image.img_to_array(img)
@@ -71,15 +74,13 @@ def upload():
     if request.method == 'POST':
         # Get the file from post request
         f = request.files['file']
-
-        # Save the file to ./uploads
-        basepath = os.path.dirname(__file__) # current working directory 
-        file_path = os.path.join(
-            basepath, 'uploads', secure_filename(f.filename))
-        f.save(file_path)
-
+        if f is None:
+            st.text("Please upload an image file")
+        else:
+            image = Image.open(f)
+            st.image(image, use_column_width=True)
         # Make prediction
-        preds = model_predict(file_path, model) # call prediction function
+        preds = model_predict(image, model) # call prediction function
 	
 	
 
@@ -93,4 +94,4 @@ def upload():
 
 if __name__ == '__main__':
     
-    app.run(debug=True)
+    app.run(debug=True, host='0.0.0.0', port=9696)
