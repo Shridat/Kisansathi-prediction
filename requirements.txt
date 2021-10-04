@@ -129,7 +129,6 @@ pydantic==1.7.3
 pygame==2.0.1
 Pygments==2.8.1
 pyparsing==2.4.7
-pypiwin32==223
 Pyrebase==3.0.27
 pyrsistent==0.17.3
 python-dateutil==2.8.1
