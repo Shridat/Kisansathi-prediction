@@ -4,8 +4,8 @@ import numpy as np
 import codecs
 import textract
 
-#with open('D:/M.Tech/S.Y/DP3/diseases/marathi1.txt', encoding='utf-8') as f:
-    #input1 = f.read()
+with open('Recommondations/fall army worm.txt', encoding='utf-8') as f:
+    input1 = f.read()
 #print(input1)
 
 #with open('D:/M.Tech/S.Y/DP3/diseases/marathi2.txt', encoding='utf-8') as f:
@@ -14,8 +14,8 @@ import textract
 #with open('D:/M.Tech/S.Y/DP3/diseases/marathi3.txt', encoding='utf-8') as f:
     #input3 = f.read()
 
-#with open('D:/M.Tech/S.Y/DP3/diseases/marathi4.txt', encoding='utf-8') as f:
-    #input4 = f.read()
+with open('Recommondations/maize stem borer.txt', encoding='utf-8') as f:
+    input4 = f.read()
 
 #with open('D:/M.Tech/S.Y/DP3/diseases/marathi5.txt', encoding='utf-8') as f:
     #input5 = f.read()
@@ -83,7 +83,7 @@ def upload():
 	
 	
 
-        disease_list=['Fall Army Worm','Green Stink Bug','Maize Cob Borer','Maize Stem Borer','Pink Stem Borer', 'Spodoptera litura','No Leaf', 'Healthy Corn Leaf']    
+        disease_list=[input1,'Green Stink Bug','Maize Cob Borer',input4,'Pink Stem Borer', 'Spodoptera litura','No Leaf', 'Healthy Corn Leaf']    
 
         result = disease_list[int(preds)]
         return result
