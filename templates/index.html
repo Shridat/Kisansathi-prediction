@@ -1,31 +1,49 @@
 {% extends "base.html" %} {% block content %}
 
-<h2>Pest and Disease Classifier</h2>
+<h2 style="align:left;">कीट वर्गीकरण</h2>
+    <br>
+    <div style="align=left;">
+      <select id="crop-choose" class="form-select mdb-select md-form colorful-select dropdown-success" aria-label="Default select example" onchange="Selection()">
+        <option selected disabled>Select Crop Type</option>
+        <option value="maize">Maize</option>
+        <option value="rice">Rice</option>
+      </select>
+    </div>
+    <br>
+    <div>
+    <div id="img-choose"  style="display:none">
+        <form id="upload-file" method="post" enctype="multipart/form-data" >
 
-<div>
-    <form id="upload-file" method="post" enctype="multipart/form-data">
-        <label for="imageUpload" class="upload-label">
-            Choose...
-        </label>
-        <input type="file" name="file" id="imageUpload" accept=".png, .jpg, .jpeg">
-    </form>
-
-    <div class="image-section" style="display:none;">
-        <div class="img-preview">
-            <div id="imagePreview">
+            <label for="imageUpload" class="upload-label">
+              <i class="fas fa-images"></i>
+                Choose...
+            </label>
+            <input type="file" name="file" id="imageUpload" accept=".png, .jpg, .jpeg">
+        </form>
+    </div>
+        <div id="image" class="image-section" style="display:none;">
+            <div class="img-preview">
+                <div id="imagePreview">
+                </div>
+            </div>
+            <div>
+                <button type="button" class="btn btn-outline btn-lg " id="btn-predict"><i class="fas fa-head-side-virus"></i>predict!</button>
             </div>
         </div>
-        <div>
-            <button type="button" class="btn btn-outline-info btn-lg " id="btn-predict">Predict!</button>
-        </div>
+
+        <div class="loader" style="display:none;"></div>
+
+        <h3 id="result">
+            <span> </span>
+        </h3>
+
     </div>
-
-    <div class="loader" style="display:none;"></div>
-
-    <h3 id="result">
-        <span> </span>
-    </h3>
-
-</div>
+  <script type="text/javascript">
+  function Selection(){
+    document.getElementById("img-choose").removeAttribute("style");
+    document.getElementById("image").setAttribute("style",'display:none');
+    document.getElementById("result").setAttribute("style",'display:none');
+  }
+</script>
 
 {% endblock %}
