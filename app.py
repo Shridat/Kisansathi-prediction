@@ -38,16 +38,6 @@ import streamlit as st
 # Define a flask app
 app = Flask(__name__)
 
-# Model saved with Keras model.save()
-MODEL_PATH = 'models/maize model.h5'
-
-# Load your trained model
-model = load_model(MODEL_PATH)
-
-# print('Model loaded. Start serving...')
-
-#print('Model loaded. Check http://127.0.0.1:5000/')
-
 
 def model_predict(img_data, model):
     size=(224,224)
@@ -67,9 +57,8 @@ def index():
     # Main page
     return render_template('index.html')
 
-
-@app.route('/predict', methods=['GET', 'POST'])
-def upload():
+@app.route('/maize_predict', methods=['GET', 'POST'])
+def maize_upload():
     if request.method == 'POST':
         # Get the file from post request
         f = request.files['file']
@@ -78,19 +67,79 @@ def upload():
         else:
             image = Image.open(f)
             st.image(image, use_column_width=True)
+        # Model saved with Keras model.save()
+        MODEL_PATH = 'models/maize model.h5'
+
+        # Load your trained model
+        model = load_model(MODEL_PATH)
+
         # Make prediction
-        preds = model_predict(image, model) # call prediction function
+        preds = model_predict(file_path, model) # call prediction function
 	
 	
 
-        disease_list=[input1,'Green Stink Bug','Maize Cob Borer',input4,'Pink Stem Borer', 'Spodoptera litura','No Leaf', 'Healthy Corn Leaf']    
+        pest_list=['फॉल आर्मी वर्म','ग्रीन स्टिंक बग','मक्का बेधक','तना छेदक','गुलाबी तना बेधक (Pink Stem Corer)', 'स्पोडोप्टेरा लिटुरा','अपलोड की गई छवि डेटासेट पर उपलब्ध नहीं है', 'स्वस्थ मकई का पत्ता, अगर प्रभावित हिस्सा है तो फिर से तस्वीर अपलोड करें']    
+
+        result = pest_list[int(preds)]
+        return result
+    return None
+
+@app.route('/rice_predict', methods=['GET', 'POST'])
+def rice_upload():
+    if request.method == 'POST':
+        # Get the file from post request
+        f = request.files['file']
+
+        if f is None:
+            st.text("Please upload an image file")
+        else:
+            image = Image.open(f)
+            st.image(image, use_column_width=True)
+        # Model saved with Keras model.save()
+        MODEL_PATH = 'models/rice model.h5'
+
+        # Load your trained model
+        model = load_model(MODEL_PATH)
+
+        # Make prediction
+        preds = model_predict(file_path, model) # call prediction function
+	
+	
+
+        pest_list=['बीट वेबवर्म','ब्राउन प्लांट हूपर','यूबलम्मा','गांधी बग','हरा हूपर','हॉर्न कैटरपिलर','लीफ फोल्डर','राइस मील्यबग','राइस स्किपर','स्टेम बोरर','येलो टेल मोत','अपलोड की गई छवि डेटासेट पर उपलब्ध नहीं है', 'स्वस्थ चावल का पत्, अगर प्रभावित हिस्सा है तो फिर से तस्वीर अपलोड करे']    
+
+        result = pest_list[int(preds)]
+        return result
+    return None
+
+@app.route('/rice_disease', methods=['GET', 'POST'])
+def riceD_upload():
+    if request.method == 'POST':
+        # Get the file from post request
+        f = request.files['file']
+
+        if f is None:
+            st.text("Please upload an image file")
+        else:
+            image = Image.open(f)
+            st.image(image, use_column_width=True)
+        # Model saved with Keras model.save()
+        MODEL_PATH = 'models/Rice disease.h5'
+
+        # Load your trained model
+        model = load_model(MODEL_PATH)
+
+        # Make prediction
+        preds = model_predict(file_path, model) # call prediction function
+	
+	
+
+        disease_list=['बैक्टीरियल ब्लाइट','बैक्टीरियल लीफ स्ट्रीक','ब्राउन लीफ स्पॉट','फॉल्स स्मुट','राइस ब्लास्ट रोग','शेअथ ब्लाईट ऑफ राइस','शेअथ रोट ऑफ राइस','अपलोड की गई छवि डेटासेट पर उपलब्ध नहीं है', 'स्वस्थ चावल का पत्, अगर प्रभावित हिस्सा है तो फिर से तस्वीर अपलोड करें']    
 
         result = disease_list[int(preds)]
         return result
     return None
 
-
-
 if __name__ == '__main__':
     
-    app.run(debug=True, host='0.0.0.0', port=9696)
+    app.run(debug=True)
