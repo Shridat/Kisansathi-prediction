@@ -18,7 +18,7 @@ $(document).ready(function () {
     }
     $("#imageUpload").change(function () {
         $('.image-section').show();
-        $('#btn-predict').show();
+        $('#btn-predict').fadeIn();
         $('#result').text('');
         $('#result').hide();
         readURL(this);
@@ -27,15 +27,22 @@ $(document).ready(function () {
     // Predict
     $('#btn-predict').click(function () {
         var form_data = new FormData($('#upload-file')[0]);
-
+        var cropName = $('#crop-choose').find(":selected").text();
+        var url='';
         // Show loading animation
+        if(cropName=="Maize"){
+          url= '/maize_predict';
+        }
+        if(cropName=="Rice"){
+          url= '/rice_predict';
+        }
         $(this).hide();
         $('.loader').show();
 
         // Make prediction by calling api /predict
         $.ajax({
             type: 'POST',
-            url: '/predict',
+            url: url,
             data: form_data,
             contentType: false,
             cache: false,
