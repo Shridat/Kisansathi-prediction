@@ -74,7 +74,7 @@ def maize_upload():
         model = load_model(MODEL_PATH)
 
         # Make prediction
-        preds = model_predict(file_path, model) # call prediction function
+        preds = model_predict(image, model) # call prediction function
 	
 	
 
@@ -102,7 +102,7 @@ def rice_upload():
         model = load_model(MODEL_PATH)
 
         # Make prediction
-        preds = model_predict(file_path, model) # call prediction function
+        preds = model_predict(image, model) # call prediction function
 	
 	
 
@@ -130,7 +130,7 @@ def riceD_upload():
         model = load_model(MODEL_PATH)
 
         # Make prediction
-        preds = model_predict(file_path, model) # call prediction function
+        preds = model_predict(image, model) # call prediction function
 	
 	
 
